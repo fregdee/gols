@@ -2,10 +2,11 @@ package gols
 
 import (
 	"flag"
-	"fmt"
 	"io/ioutil"
 	"os"
 	"regexp"
+
+	"github.com/fatih/color"
 )
 
 func Run() error {
@@ -30,7 +31,11 @@ func Run() error {
 	}
 
 	for _, file := range files {
-		fmt.Println(file.Name())
+		if file.IsDir() {
+			color.Cyan(file.Name())
+		} else {
+			color.Yellow(file.Name())
+		}
 	}
 
 	return nil
